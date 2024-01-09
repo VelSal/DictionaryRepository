@@ -1,6 +1,8 @@
-﻿namespace DictionaryRepository.Models
+﻿using System;
+
+namespace DictionaryRepository.Models
 {
-    public class Product
+    public class Product:IComparable<Product>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -9,15 +11,19 @@
 
         public override string ToString()
         {
-            return $"{Name} { Price} {Category}";
+            return $"{Name} {Price} {Category}";
         }
-
         public string GetNameAndPrice
         {
             get
             {
                 return Name + Price.ToString() ;
             }
+        }
+        public int CompareTo(Product other)
+        {
+            //Alphabetical order
+            return this.Name.CompareTo(other.Name);
         }
     }
 }
