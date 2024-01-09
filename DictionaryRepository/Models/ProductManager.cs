@@ -25,8 +25,8 @@ namespace DictionaryRepository.Models
             }
         }
         public void Insert(Product product)
-        {
-            Data.ProductList.Add(product.Id, product);
+        {   //if Find()
+                Data.ProductList.Add(product.Id, product);
         }
         public Product SelectSingle(int id)
         {

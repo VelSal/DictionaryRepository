@@ -25,5 +25,18 @@ namespace DictionaryRepository.Models
             //Alphabetical order
             return this.Name.CompareTo(other.Name);
         }
+
+        public override bool Equals(object obj)
+        {
+            var product = obj as Product;
+            //if the passed object is null OR this object is not a Product object
+            if (obj == null || this.GetType() != obj.GetType()) 
+                return false;
+            return this.GetNameAndPrice == product.GetNameAndPrice;
+        }
+        public override int GetHashCode()
+        {
+            return this.GetNameAndPrice.GetHashCode();
+        }
     }
 }

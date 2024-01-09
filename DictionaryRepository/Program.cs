@@ -39,12 +39,35 @@ namespace DictionaryRepository
             Product p5 = dictList.SelectSingle(5);
             Console.WriteLine($"Product with id 5 is {p5.ToString()}");
 
+            //Create two objects of Product to test Equals and Hashcode
+            Product p10 = new Product() { Id = 10, Category = "Telephone", Name = "GSM", Price = 400.00m };
+            Product p11 = new Product() { Id = 11, Category = "Computer", Name = "Laptop", Price = 600.00m };
+            //Product p11 = new Product() { Id = 10, Category = "Telephone", Name = "GSM", Price = 400.00m };
+
+            var equal = p10.Equals(p11);    //utilise GetNameAndPrice, compare 2 objets et non un objet avec la db
+            if (equal)
+            {
+                Console.WriteLine("Product already exists in database");
+            }
+            else
+            {
+                Product product = new Product();
+                dictList.Insert(p11);
+                Console.WriteLine("Product added in database");
+            }
+
+            Show(dictList.SelectAll(), "Product already in database or added in it");
+
+            if (dictList.Find(10))
+                Console.WriteLine("Product exist in database");
+            else Console.WriteLine("Product doesn't exist in database");
+
             Console.ReadLine();
         }
 
         private static void Show(Dictionary<int, Product> dictList, string parameter)
         {
-            Console.WriteLine(new string('-',50));
+            Console.WriteLine(new string('-', 50));
             Console.WriteLine(parameter);
             Console.WriteLine(new string('-', 50));
 
