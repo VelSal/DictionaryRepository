@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 
 namespace DictionaryRepository
 {
@@ -58,9 +57,15 @@ namespace DictionaryRepository
 
             Show(dictList.SelectAll(), "Product already in database or added in it");
 
-            if (dictList.Find(10))
-                Console.WriteLine("Product exist in database");
-            else Console.WriteLine("Product doesn't exist in database");
+            int searchIdRecord = 13;
+            if (dictList.Find(searchIdRecord))
+            {
+                Console.WriteLine($"Product with id {searchIdRecord} exist in database\nThe product is: {dictList.SelectSingle(searchIdRecord)}");
+            }
+            else
+            {
+                Console.WriteLine($"Product with id {searchIdRecord} doesn't exist in database");
+            }
 
             Console.ReadLine();
         }
